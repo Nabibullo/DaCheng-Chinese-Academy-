@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Chinese Academy — Онлайн-курс китайского языка</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --text:#e8ecf5;
+  --accent:#ff2d55;
+  --accent2:#ff9500;
+  --glass:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.14);
+  --bg-dark:#05070d;
+  --bg-light:#f5f5f5;
+  --text-light:#111;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  background:var(--bg-dark);
+  overflow-x:hidden;
+  min-height:100vh;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* Живой фон с иероглифами */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+}
+.chinese-char{
+  position:absolute;
+  font-size:24px;
+  font-weight:bold;
+  color:rgba(255,255,255,0.2);
+  animation: float 15s linear infinite;
+}
+@keyframes float{
+  0%{transform: translateY(120vh) rotate(0deg);}
+  100%{transform: translateY(-10vh) rotate(360deg);}
+}
+
+/* header */
+header{
+  padding:28px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition: color 0.5s;
+}
+
+.logo{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.logo-icon{
+  width:54px;height:54px;border-radius:14px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;justify-content:center;align-items:center;
+  font-size:24px;font-weight:900;color:white;
+  transform:rotate(-6deg);
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+}
+
+.logo-text div:first-child{
+  font-size:20px;font-weight:800;
+}
+.logo-text div:last-child{
+  opacity:0.8;font-size:13px;
+}
+
+/* кнопка день/ночь */
+.theme-toggle{
+  padding:10px 16px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(130deg,var(--accent),var(--accent2));
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+}
+.theme-toggle:hover{transform:scale(1.05)}
+
+/* main */
+main{
+  max-width:960px;margin:0 auto;
+  padding:20px;
+  margin-top:20px;
+}
+
+.hero{
+  padding:34px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:16px;
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+  animation:fadeIn 1s ease forwards;
+  transition: background 0.5s, color 0.5s;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+  font-size:34px;font-weight:800;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:14px;
+}
+
+.sub{
+  font-size:16px; opacity:0.85; margin-bottom:20px;
+  line-height:1.6;
+}
+
+.price-box{
+  margin-top:20px;
+  padding:20px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  text-align:center;
+  transition: background 0.5s;
+}
+.price{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:8px;
+  color:#fff;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  padding:14px 22px;
+  background:linear-gradient(130deg,var(--accent),var(--accent2));
+  color:white;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 12px 40px rgba(0,0,0,0.35);
+  transition:transform .18s ease;
+}
+.btn:hover{
+  transform:translateY(-6px) scale(1.02);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:0.8;
+  font-size:14px;
+  margin-top:30px;
+  line-height:1.6;
+  transition: color 0.5s;
+}
+
+/* флаг */
+.flag{
+  width:80px;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,0.4));
+  margin-bottom:14px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg" id="bg"></div>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">汉</div>
+    <div class="logo-text">
+      <div>Chinese Academy</div>
+      <div>Курс китайского языка</div>
+    </div>
+  </div>
+  <button class="theme-toggle" id="themeBtn">Сменить фон</button>
+</header>
+
+<main>
+  <section class="hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
+         alt="China flag" class="flag"/>
+
+    <h1>Онлайн-курс китайского языка</h1>
+    <p class="sub">
+      Здравствуйте, меня зовут Набибулло Курбонзода.<br>
+      Я — профессиональный преподаватель китайского языка.<br>
+      Провожу занятия 3 раза в неделю, обучение ведётся индивидуально.<br>
+      Поддержка через WhatsApp для всех студентов.<br><br>
+      Многие студенты думают, что китайский сложный язык, но на моём курсе вы быстро научитесь говорить, читать и писать.<br>
+      Я показываю только практические и полезные навыки, которые сразу можно использовать.
+    </p>
+
+    <div class="price-box">
+      <div class="price">270 сомони / месяц</div>
+      <div style="opacity:0.8">≈ 30 долларов</div>
+    </div>
+
+    <a class="btn"
+       href="https://wa.me/992908802800?text=Здравствуйте👋!%20Хочу%20записаться✍%20на%20курс%20китайского%20языка🇨🇳."
+       target="_blank">
+      Записаться в WhatsApp
+    </a>
+  </section>
+</main>
+
+<footer>
+  Chinese Academy Tajikistan • Преподаватель: Набибулло Курбонзода<br>
+  WhatsApp: +992 908 80 28 00
+</footer>
+
+<script>
+// создаём плавающие иероглифы
+const chars = ["学","汉","语","中","国","文","字"];
+for(let i=0;i<50;i++){
+  const span = document.createElement("span");
+  span.classList.add("chinese-char");
+  span.innerText = chars[Math.floor(Math.random()*chars.length)];
+  span.style.left = Math.random()*100 + "vw";
+  span.style.fontSize = (12+Math.random()*24)+"px";
+  span.style.animationDuration = (10+Math.random()*10)+"s";
+  document.getElementById("bg").appendChild(span);
+}
+
+// кнопка день/ночь
+const themeBtn = document.getElementById("themeBtn");
+let dark = true;
+themeBtn.addEventListener("click",()=>{
+  if(dark){
+    document.body.style.background="var(--bg-light)";
+    document.body.style.color="var(--text-light)";
+    document.querySelector(".hero").style.background="rgba(0,0,0,0.05)";
+  }else{
+    document.body.style.background="var(--bg-dark)";
+    document.body.style.color="var(--text)";
+    document.querySelector(".hero").style.background="var(--glass)";
+  }
+  dark=!dark;
+});
+</script>
+
+</body>
+</html>
